@@ -29,7 +29,7 @@ public abstract class Disease {
 	/**
 	 * Returns boolean indicating if disease is fatal
 	 * 
-	 * @return
+	 * @return whether or not the disease is fatal or not
 	 */
 	public boolean isFatal() {
 		if (fatality != Fatality.NONLETHAL) {
