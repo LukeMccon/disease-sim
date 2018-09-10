@@ -10,15 +10,17 @@ public class Town {
 	private ArrayList<Person> citizens;
 	private int totalPopulation;
 	private int interactions;
+	private int simulationTime;
 	private Disease disease;
 
 	/**
 	 * Create a new town
 	 */
-	public Town(int totalPopulation, int interactions, Disease disease) {
+	public Town(int totalPopulation, int interactions, int simulationTime, Disease disease) {
 
 		this.totalPopulation = totalPopulation;
 		this.interactions = interactions;
+		this.simulationTime = simulationTime;
 		this.disease = disease;
 
 	}
@@ -84,7 +86,7 @@ public class Town {
 		Random random = new Random();
 
 		// Pass time in town for 7 days
-		for (int i = 0; i < 14; i++) {
+		for (int i = 0; i < simulationTime; i++) {
 
 			for (Person p : citizens) {
 

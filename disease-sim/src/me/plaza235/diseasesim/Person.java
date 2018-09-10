@@ -3,7 +3,6 @@ package me.plaza235.diseasesim;
 import java.util.Random;
 
 import me.plaza235.diseasesim.diseases.Disease;
-import me.plaza235.diseasesim.enums.Fatality;
 
 public class Person {
 
@@ -17,7 +16,7 @@ public class Person {
 	/** Instance ints */
 	private int incubationTime;
 	private int interactions;
-	private int timeToBeSick;
+	private int timeToBeSick = -1;
 
 	/** Other Instance variables */
 	private Disease disease;
@@ -118,6 +117,7 @@ public class Person {
 		if (timeToBeSick == 0) {
 			setContagious(false);
 			setSick(false);
+			setVaccinated(true);
 		}
 	}
 
@@ -128,12 +128,12 @@ public class Person {
 	 */
 	public void tickDeath() {
 
-		if (disease.getFatality() == Fatality.NONLETHAL) {
-			// Woo hoo you didn't die
-		} else if (disease.getFatality() == Fatality.LETHAL && isContagious()) {
+		if (!disease.isFatal()) {
+			// Woo hoo you didn't die			
+		} else if (disease.isFatal() && isContagious()) {
 			Random random = new Random();
 
-			if (random.nextInt(5) == 2) {
+			if (random.nextInt(100) == 57) {
 				kill();
 			}
 

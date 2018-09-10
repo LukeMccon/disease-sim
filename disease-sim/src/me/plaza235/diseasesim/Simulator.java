@@ -1,15 +1,18 @@
 package me.plaza235.diseasesim;
 
 import me.plaza235.diseasesim.diseases.CommonCold;
+import me.plaza235.diseasesim.diseases.CustomDisease;
 import me.plaza235.diseasesim.diseases.Disease;
 import me.plaza235.diseasesim.diseases.Influenza;
 import me.plaza235.diseasesim.diseases.LowContagion;
+import me.plaza235.diseasesim.enums.Fatality;
 
 public class Simulator {
 
 	private static final int POPULATION = 10000;
 	private static final int VACCINATED = 8500;
 	private static final int INTERACTIONS = 15;
+	private static final int SIMULATION_TIME = 30;
 
 	private static Disease disease = new LowContagion();
 	private static Disease disease2 = new Influenza();
@@ -17,11 +20,15 @@ public class Simulator {
 
 	public static void main(String[] args) {
 
+		//Disease ebola = new CustomDisease("Ebola", 1, Fatality.HIGHLY_LETHAL, 0, 14, 200);
+		
 		runSimulation(disease);
 		runSimulation(disease2);
 		runSimulation(disease3);
+		//runSimulation(ebola);
 
 		runSingleSimulation(disease2);
+		//runSingleSimulation(ebola);
 
 	}
 
@@ -65,7 +72,7 @@ public class Simulator {
 
 			// System.out.println("Running Simulation " + i + " of " + maxSims);
 
-			Town town = new Town(POPULATION, INTERACTIONS, disease);
+			Town town = new Town(POPULATION, INTERACTIONS, SIMULATION_TIME, disease);
 			town.populateTown();
 			town.infectCitizen();
 			town.vaccinateCitizens(VACCINATED);
@@ -152,7 +159,7 @@ public class Simulator {
 	 */
 	public static void runSingleSimulation(Disease disease) {
 
-		Town town = new Town(POPULATION, INTERACTIONS, disease);
+		Town town = new Town(POPULATION, INTERACTIONS, SIMULATION_TIME, disease);
 		town.populateTown();
 		town.infectCitizen();
 		town.vaccinateCitizens(VACCINATED);
