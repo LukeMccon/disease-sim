@@ -132,7 +132,11 @@ public class Town {
 		return totalSick;
 
 	}
-
+	/**
+	 * Returns number of people who died as a result of the disease
+	 *
+	 * @return number of dead people
+	 */
 	public int numberOfDead() {
 
 		int totalDead = 0;
@@ -146,6 +150,12 @@ public class Town {
 		return totalDead;
 	}
 
+
+	/**
+	 * returns people who were infected at some point in the town
+	 *
+	 *@return total of people who developed and carried the disease in the alloted time
+	 */
 	public int numberWasSick() {
 
 		int totalWasSick = 0;
